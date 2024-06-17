@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      data-purpose="Layout StyleSheet"
+      title="Web Awesome"
+      href="/css/app-wa-612dd696ed96d6777d290343ca9cef9d.css?vsn=d"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://site-assets.fontawesome.com/releases/v6.5.1/css/all.css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://site-assets.fontawesome.com/releases/v6.5.1/css/sharp-thin.css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://site-assets.fontawesome.com/releases/v6.5.1/css/sharp-solid.css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://site-assets.fontawesome.com/releases/v6.5.1/css/sharp-regular.css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://site-assets.fontawesome.com/releases/v6.5.1/css/sharp-light.css"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=Lemon&family=Markazi+Text&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <title>Check-attendance</title>
+     <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <style>
+      * {
+        font-family: Bree Serif, Helvetica, sans-serif;
+      }
+      body{
+        margin: 2%;
+      }
+      .header {
+        text-align: center;
+        font-size: 10vw;
+        color: rgb(120, 71, 8);
+        text-shadow: 2px 19px 13px rgba(245, 245, 220, 1);
+        margin-bottom: 1vh;
+      }
+      .display {
+        border-radius: 5px;
+        text-align: center;
+        background-color: antiquewhite;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        margin-bottom: 2vh;
+        height: 7vh;
+      }
+      .container {
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        height: 81vh;
+      
+        text-align: center;
+        font-size: 5vw;
+        background-color: #e3edf7;
+        margin: 0%;
+        padding: 0%;
+      }
+      .inner-container{
+        height: 72vh;
+        overflow-y: auto;
+        border-radius: 5px;
+      }
+      .inline-hr {
+        display: inline-block; /* Make the <hr> element inline */
+        width: 35vw; /* Set width as needed */
+        margin: 0 0px; /* Adjust margin as needed */
+        border: none; /* Remove default border */
+        border-top: 0.5px solid black; /*Add custom border  */
+      }
+      .box {
+        margin: 2%;
+        padding: 1%;
+        /* border: solid 1px; */
+        height: 6vh;
+        display: grid;
+        grid-template-columns: 65vw 20vw;
+        grid-gap: 3vw;
+      }
+      .inbox {
+        border-radius: 5px;
+        /* border: solid 1px; */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      }
+      .date {
+        background-color: antiquewhite;
+      }
+      .status {
+        background-color: aquamarine;
+      }
+      .page-slide{
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        height:7vh ;
+        border-radius: 5px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1vh;
+        background-color: aquamarine;
+        padding: 0 5vw;
+      }
+/* .fa-solid{
+    background-color:antiquewhite;
+    border-radius: 10px;
+    padding: 10%;
+    width: 10vw;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+   
+} */
+.prev,.next{
+  background-color: transparent;
+  border: none;
+  height: 4vh;
+  padding: 0%;
+   border-radius: 10px;
+    width: 12vw;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+/* Add this CSS to add hover effect to the buttons */
+
+
+
+/* .container {
+        position: relative;
+        overflow: hidden;
+    } */
+
+    .page-slide {
+        display: flex;
+        align-items: center;
+        transition: transform 0.5s ease;
+    }
+
+    .session {
+        flex: 1;
+        text-align: center;
+    }
+
+    .slide-left {
+        animation: slideToLeft 800ms forwards;
+    }
+
+    .slide-right {
+        animation: slideToRight 800ms forwards;
+    }
+
+    @keyframes slideToLeft {
+        from {
+            transform: translateX(100%);
+        }
+        to {
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes slideToRight {
+        from {
+            transform: translateX(-100%);
+        }
+        to {
+            transform: translateX(0);
+        }
+    }
+
+    </style>
+    
+  </head>
+  <body>
+    <div class="header">Attendance Report</div>
+    <div class="display" id="output"></div>
+   <div class="container">
+       <div class="page-slide">
+        <button
+        class="prev"
+        type="button"
+        data-bs-target="#carouselExample"
+        data-bs-slide="prev"
+      >
+      <i class="fa-solid fa-arrow-left"></i>
+        
+      </button>
+         <div class="session">Theory</div>
+        <button
+        class="next"
+        type="button"
+        data-bs-target="#carouselExample"
+        data-bs-slide="next"
+      >
+      <i class="fa-solid fa-arrow-right"></i>
+
+        
+      </button>
+       </div>
+
+       <div id="carouselExample" class="carousel slide">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="inner-container d-block w-100">
+              <hr class="inline-hr" />
+              January
+              <hr class="inline-hr" />
+              <div class="box">
+                <div class="date inbox">00:00:0000</div>
+                <div class="status inbox">A</div>
+              </div>
+              <div class="box">
+                <div class="date inbox">00:00:0000</div>
+                <div class="status inbox">A</div>
+              </div>
+              <div class="box">
+                <div class="date inbox">00:00:0000</div>
+                <div class="status inbox">A</div>
+              </div>
+              <div class="box">
+                <div class="date inbox">00:00:0000</div>
+                <div class="status inbox">A</div>
+              </div>
+              <div class="box">
+                <div class="date inbox">00:00:0000</div>
+                <div class="status inbox">A</div>
+              </div>
+              <hr class="inline-hr" />
+              February
+              <hr class="inline-hr" />
+              <div class="box">
+                <div class="date inbox">00:00:0000</div>
+                <div class="status inbox">A</div>
+              </div>
+              <div class="box">
+                <div class="date inbox">00:00:0000</div>
+                <div class="status inbox">A</div>
+              </div>
+              <div class="box">
+                <div class="date inbox">00:00:0000</div>
+                <div class="status inbox">A</div>
+              </div>
+              <div class="box">
+                <div class="date inbox">00:00:0000</div>
+                <div class="status inbox">A</div>
+              </div>
+        
+              <div class="box">
+                <div class="date inbox">00:00:0000</div>
+                <div class="status inbox">A</div>
+              </div>
+              <div class="box">
+                <div class="date inbox">00:00:0000</div>
+                <div class="status inbox">A</div>
+              </div>
+              <hr class="inline-hr" />
+              March
+              <hr class="inline-hr" />
+              <div class="box">
+                <div class="date inbox">00:00:0000</div>
+                <div class="status inbox">A</div>
+              </div>
+              <div class="box">
+                <div class="date inbox">00:00:0000</div>
+                <div class="status inbox">A</div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="inner-container d-block w-100" >
+              <hr class="inline-hr" />
+              January
+              <hr class="inline-hr" />
+              <div class="box">
+                <div class="date inbox">00:00:0000</div>
+                <div class="status inbox">P</div>
+              </div>
+              <div class="box">
+                <div class="date inbox">00:00:0000</div>
+                <div class="status inbox">P</div>
+              </div>
+              <div class="box">
+                <div class="date inbox">00:00:0000</div>
+                <div class="status inbox">P</div>
+              </div>
+              <div class="box">
+                <div class="date inbox">00:00:0000</div>
+                <div class="status inbox">P</div>
+              </div>
+              <div class="box">
+                <div class="date inbox">00:00:0000</div>
+                <div class="status inbox">P</div>
+              </div>
+              <hr class="inline-hr" />
+              February
+              <hr class="inline-hr" />
+              <div class="box">
+                <div class="date inbox">00:00:0000</div>
+                <div class="status inbox">P</div>
+              </div>
+              <div class="box">
+                <div class="date inbox">00:00:0000</div>
+                <div class="status inbox">P</div>
+              </div>
+              <div class="box">
+                <div class="date inbox">00:00:0000</div>
+                <div class="status inbox">P</div>
+              </div>
+              <div class="box">
+                <div class="date inbox">00:00:0000</div>
+                <div class="status inbox">P</div>
+              </div>
+        
+              <div class="box">
+                <div class="date inbox">00:00:0000</div>
+                <div class="status inbox">P</div>
+              </div>
+              <div class="box">
+                <div class="date inbox">00:00:0000</div>
+                <div class="status inbox">P</div>
+              </div>
+              <hr class="inline-hr" />
+              March
+              <hr class="inline-hr" />
+              <div class="box">
+                <div class="date inbox">00:00:0000</div>
+                <div class="status inbox">P</div>
+              </div>
+              <div class="box">
+                <div class="date inbox">00:00:0000</div>
+                <div class="status inbox">P</div>
+              </div>
+            </div>
+          </div>
+        </div>
+   </div>
+   <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+// change the session innerhtml
+document.addEventListener('DOMContentLoaded', function() {
+        const sessionDiv = document.querySelector('.session');
+        const prevButton = document.querySelector('.prev');
+        const nextButton = document.querySelector('.next');
+        
+        // Function to toggle session text and slide jjj animation
+        function prev() {
+            if (sessionDiv.textContent === 'Theory') {
+                sessionDiv.textContent = 'Practical';
+                sessionDiv.classList.add('slide-right');
+            } else {
+                sessionDiv.textContent = 'Theory';
+                sessionDiv.classList.add('slide-right');
+            }
+            setTimeout(() => {
+                sessionDiv.classList.remove('slide-left', 'slide-right');
+            }, 500);
+        }
+        function next() {
+            if (sessionDiv.textContent === 'Theory') {
+                sessionDiv.textContent = 'Practical';
+                sessionDiv.classList.add('slide-left');
+            } else {
+                sessionDiv.textContent = 'Theory';
+                sessionDiv.classList.add('slide-left');
+            }
+            setTimeout(() => {
+                sessionDiv.classList.remove('slide-left', 'slide-right');
+            }, 2000);
+        }
+        
+        // Add click event listeners to buttons
+        prevButton.addEventListener('click', prev);
+        nextButton.addEventListener('click', next);
+    });
+
+     // its load the content    
+     var data = sessionStorage.getItem("lecturedetail");
+      document.getElementById("output").innerHTML = data;
+    </script>
+  </body>
+</html>

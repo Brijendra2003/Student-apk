@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=Lemon&family=Markazi+Text&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <title>Student Home</title>
+    <style>
+      * {
+        font-family: Bree Serif, Helvetica, sans-serif;
+      }
+
+      html,
+      body {
+        margin: 0;
+        height: 100%;
+        width: 100%;
+      }
+      /* Home css */
+      .top_nav {
+        width: 100%;
+        background: rgb(0, 212, 255);
+        background: radial-gradient(
+          circle,
+          rgba(0, 212, 255, 1) 0%,
+          rgba(250, 235, 215, 1) 100%
+        );
+        position: fixed;
+        top: 0;
+        display: flex;
+        align-items: center;
+      }
+
+      /* Profile  */
+      .profile-container {
+        float: left;
+        border-radius: 50%;
+        overflow: hidden;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        margin: 10px 15px 10px 15px;
+      }
+
+      .profile-image {
+        width: 60px;
+        height: 60px;
+        display: block;
+      }
+      /* Profile  */
+
+      /* lables  */
+      .lables {
+        font-size: smaller;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .Lectures {
+        margin: 100px 10px 100px 10px;
+        padding-bottom: 25%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        /* display: none; */
+      }
+      .lecture {
+        border: 1px solid;
+        /* border: none; */
+        /* background-color: aquamarine; */
+        background-color: #e3edf7;
+        border-radius: 10px;
+        margin: 0.3vh 0px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        padding: 10px;
+        text-align: start;
+        /* display: flex; */
+        /* justify-content: center;
+        align-items: center; */
+        width: 97vw;
+      }
+      .upperdiv {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .lec-marked {
+        width: 70px;
+        height: 50px;
+      }
+      #presenty-status {
+        width: 13vw;
+      }
+      .lec-score {
+        width: 110px;
+        height: 110px;
+        display: flex;
+        position: relative;
+        margin-right: 20px;
+      }
+      .lec-detail {
+        font-size: 4vw;
+        display: flex;
+        flex-direction: column;
+        width: 38vw;
+        margin: 1.5vw;
+      }
+      .lec-status {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: large;
+      }
+      .outer {
+        /* border: solid 1px; */
+        height: 100px;
+        width: 100px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 6px 6px 10px -1px rgba(0, 0, 0, 0.15),
+          -6px -6px 10px -1px rgba(255, 255, 255, 0.7);
+      }
+      .inner {
+        /* border: solid 1px; */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 60px;
+        width: 60px;
+        border-radius: 50%;
+        box-shadow: inset 4px 4px 6px -1px rgba(0, 0, 0, 0.2),
+          inset -4px -4px 6px -1px rgba(255, 255, 255, 0.7),
+          -0.5px -0.5px 0px rgba(255, 255, 255, 1),
+          0.5px 0.5px 0px rgba(0, 0, 0, 0.15),
+          0px 12px 10px -10px rgba(0, 0, 0, 0.05);
+      }
+      #number {
+        font-weight: 600px;
+        color: black;
+      }
+      circle {
+        fill: none;
+        stroke: url(#GradientColor);
+        /* stroke:orangered; */
+        stroke-width: 19px;
+        stroke-dashoffset: 252;
+        stroke-dasharray: 252;
+        animation: anim 2s linear forwards;
+      }
+      @keyframes anim {
+        100% {
+          stroke-dashoffset: 0;
+        }
+      }
+      svg {
+        position: absolute;
+        top: 0.6px;
+        left: 1.1px;
+      }
+      .selected {
+        background-color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="Lectures">
+      <button class="item lecture">
+        <div class="upperdiv">
+          <div class="lec-score">
+            <div class="outer">
+              <div class="inner">
+                <div id="lec1-score"></div>
+              </div>
+            </div>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              version="1.1"
+              width="110px"
+              height="110px"
+            >
+              <defs>
+                <linearGradient id="GradientColor">
+                  <stop offset="0%" stop-color="#e91e63" />
+                  <stop offset="100%" stop-color="#673ab7" />
+                </linearGradient>
+              </defs>
+              <circle cx="50" cy="50" r="40" stroke-linecap="" />
+            </svg>
+          </div>
+          <div class="lec-detail">
+            <div class="lec1-sub-name">PWP (pr)</div>
+            <div class="lec1-lecturer-name">Miss Namrata thakur</div>
+          </div>
+          <div class="lec-marked">
+            <img id="presenty-status" src="checkmark-box-green-icon.png" />
+          </div>
+        </div>
+        <div class="lec-status lst">Ended</div>
+      </button>
+      <button class="item lecture">
+        <div class="upperdiv">
+          <div class="lec-score">
+            <div class="outer">
+              <div class="inner">
+                <div id="lec1-score"></div>
+              </div>
+            </div>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              version="1.1"
+              width="110px"
+              height="110px"
+            >
+              <defs>
+                <linearGradient id="GradientColor">
+                  <stop offset="0%" stop-color="#e91e63" />
+                  <stop offset="100%" stop-color="#673ab7" />
+                </linearGradient>
+              </defs>
+              <circle cx="50" cy="50" r="40" stroke-linecap="" />
+            </svg>
+          </div>
+          <div class="lec-detail">
+            <div class="lec1-sub-name">PWP (pr)</div>
+            <div class="lec1-lecturer-name">Miss Namrata thakur</div>
+          </div>
+          <div class="lec-marked">
+            <img id="presenty-status" src="checkmark-box-green-icon.png" />
+          </div>
+        </div>
+        <div class="lec-status lst">Ended</div>
+      </button>
+      <button class="item lecture">
+        <div class="upperdiv">
+          <div class="lec-score">
+            <div class="outer">
+              <div class="inner">
+                <div id="lec1-score"></div>
+              </div>
+            </div>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              version="1.1"
+              width="110px"
+              height="110px"
+            >
+              <defs>
+                <linearGradient id="GradientColor">
+                  <stop offset="0%" stop-color="#e91e63" />
+                  <stop offset="100%" stop-color="#673ab7" />
+                </linearGradient>
+              </defs>
+              <circle cx="50" cy="50" r="40" stroke-linecap="" />
+            </svg>
+          </div>
+          <div class="lec-detail">
+            <div class="lec1-sub-name">PWP (pr)</div>
+            <div class="lec1-lecturer-name">Miss Namrata thakur</div>
+          </div>
+          <div class="lec-marked">
+            <img id="presenty-status" src="checkmark-box-green-icon.png" />
+          </div>
+        </div>
+        <div class="lec-status lst">Ended</div>
+      </button>
+      <button class="item lecture">
+        <div class="upperdiv">
+          <div class="lec-score">
+            <div class="outer">
+              <div class="inner">
+                <div id="lec1-score"></div>
+              </div>
+            </div>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              version="1.1"
+              width="110px"
+              height="110px"
+            >
+              <defs>
+                <linearGradient id="GradientColor">
+                  <stop offset="0%" stop-color="#e91e63" />
+                  <stop offset="100%" stop-color="#673ab7" />
+                </linearGradient>
+              </defs>
+              <circle cx="50" cy="50" r="40" stroke-linecap="" />
+            </svg>
+          </div>
+          <div class="lec-detail">
+            <div class="lec1-sub-name">PWP (pr)</div>
+            <div class="lec1-lecturer-name">Miss Namrata thakur</div>
+          </div>
+          <div class="lec-marked">
+            <img id="presenty-status" src="checkmark-box-green-icon.png" />
+          </div>
+        </div>
+        <div class="lec-status lst">Ended</div>
+      </button>
+      <button class="item lecture">
+        <div class="upperdiv">
+          <div class="lec-score">
+            <div class="outer">
+              <div class="inner">
+                <div id="lec1-score"></div>
+              </div>
+            </div>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              version="1.1"
+              width="110px"
+              height="110px"
+            >
+              <defs>
+                <linearGradient id="GradientColor">
+                  <stop offset="0%" stop-color="#e91e63" />
+                  <stop offset="100%" stop-color="#673ab7" />
+                </linearGradient>
+              </defs>
+              <circle cx="50" cy="50" r="40" stroke-linecap="" />
+            </svg>
+          </div>
+          <div class="lec-detail">
+            <div class="lec1-sub-name">PWP (pr)</div>
+            <div class="lec1-lecturer-name">Miss Namrata thakur</div>
+          </div>
+          <div class="lec-marked">
+            <img id="presenty-status" src="checkmark-box-green-icon.png" />
+          </div>
+        </div>
+        <div class="lec-status lst">Ended</div>
+      </button>
+      <button class="item lecture">
+        <div class="upperdiv">
+          <div class="lec-score">
+            <div class="outer">
+              <div class="inner">
+                <div id="lec1-score"></div>
+              </div>
+            </div>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              version="1.1"
+              width="110px"
+              height="110px"
+            >
+              <defs>
+                <linearGradient id="GradientColor">
+                  <stop offset="0%" stop-color="#e91e63" />
+                  <stop offset="100%" stop-color="#673ab7" />
+                </linearGradient>
+              </defs>
+              <circle cx="50" cy="50" r="40" stroke-linecap="" />
+            </svg>
+          </div>
+          <div class="lec-detail">
+            <div class="lec1-sub-name">PWP (pr)</div>
+            <div class="lec1-lecturer-name">Miss Namrata thakur</div>
+          </div>
+          <div class="lec-marked">
+            <img id="presenty-status" src="checkmark-box-green-icon.png" />
+          </div>
+        </div>
+        <div class="lec-status lst">Ended</div>
+      </button>
+    </div>
+    <div class="top_nav">
+      <div class="profile-container">
+        <a href="profile.html" target="_top"
+          ><img src="ganesha.jpg" alt="Profile Image" class="profile-image"
+        /></a>
+      </div>
+
+      <div class="lables">
+        <div class="lab S_name">S_name</div>
+        <div class="lab Enrollment no">Enrollment no</div>
+        <div class="lab Roll no">Roll no</div>
+      </div>
+    </div>
+    <script src="Student_home.js"></script>
+  </body>
+</html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="stylesheet"
+      data-purpose="Layout StyleSheet"
+      title="Web Awesome"
+      href="/css/app-wa-612dd696ed96d6777d290343ca9cef9d.css?vsn=d"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://site-assets.fontawesome.com/releases/v6.5.1/css/all.css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://site-assets.fontawesome.com/releases/v6.5.1/css/sharp-thin.css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://site-assets.fontawesome.com/releases/v6.5.1/css/sharp-solid.css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://site-assets.fontawesome.com/releases/v6.5.1/css/sharp-regular.css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://site-assets.fontawesome.com/releases/v6.5.1/css/sharp-light.css"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=Lemon&family=Markazi+Text&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <title>Student Home</title>
+    <style>
+      body {
+        margin: 0%;
+        padding: 0%;
+        font-family: Bree Serif, Helvetica, sans-serif;
+      }
+
+      /* #app {
+        height: 100%;
+        margin-bottom: 56px;
+      } */
+
+      .bottom-nav {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-around;
+        align-items: center;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        background-color: #dce4ef;
+        overflow: hidden;
+        box-shadow: 0px -34px 85px 14px rgba(245, 245, 220, 1);
+        -webkit-box-shadow: 0px -34px 85px 14px rgba(245, 245, 220, 1);
+        -moz-box-shadow: 0px -34px 85px 14px rgba(245, 245, 220, 1);
+      }
+      /* hover */
+      .fa-house-chimney {
+        padding: 18px 23px;
+        /* border: solid; */
+      }
+      .fa-list-check {
+        padding: 17px 25px;
+        /* border: solid; */
+      }
+      .fa-house-person-leave {
+        padding: 17px 23px;
+        /* border: solid; */
+      }
+      .fa-calendar-range {
+        padding: 17px 26px;
+        /* border: solid; */
+      }
+      .fa-solid {
+        border: none;
+        border-radius: 50px;
+        background-color: rgb(195, 195, 226);
+      }
+      /* hover */
+      .bottom-nav a {
+        color: rgb(0, 0, 0);
+        text-align: center;
+        text-decoration: none;
+        margin: 3% 1%;
+      }
+
+      p {
+        font-size: smaller;
+        margin: 10px 0px 0px 0px;
+      }
+      /* iframe {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+        margin: 0%;
+        border: none;
+        
+      } */
+      /* #content-container {
+        margin: 27% 0%;
+      } */
+      a:hover {
+        background-color: transparent;
+      }
+      .ifr{
+        /* border: solid 1px; */
+        height: 89vh;
+        width: 99.5vw;
+        margin: 0%;
+      }
+
+      /* ----------------------------------- */
+    </style>
+  </head>
+  <body>
+    <iframe name="ifr" class="ifr" src="Student_home.html" frameborder="0"></iframe>
+    <nav class="bottom-nav" id="bottomNav">
+      <a id="home" href="Student_home.html" target="ifr" onclick="loadPage('Student_home.html')"
+        ><i class="fa-solid fa-house-chimney fa-xl"></i>
+        <p>Home</p>
+      </a>
+
+      <a id="trc" href="S_trackAttendance.html" target="ifr" onclick="loadPage('S_trackAttendance.html')"
+        ><i class="fa-regular fa-list-check fa-xl"></i>
+        <p>Attendance</p>
+      </a>
+      <a id="stl" href="S_take_leave.html" target="ifr" onclick="loadPage('S_take_leave.html')"
+        ><i class="fa-regular fa-house-person-leave fa-xl"></i>
+        <p>Leave Req</p>
+      </a>
+      <a id="stt" href="S_time_table.html" target="ifr" onclick="loadPage('S_time_table.html')"
+        ><i class="fa-light fa-calendar-range fa-xl"></i>
+        <p>T-table</p>
+      </a>
+    </nav>
+    <script>
+      function loadPage(page) {
+        //   if (page.includes('S_take_leave.html')) {
+        // document.querySelectorAll('#content-container a').forEach(function(link) {
+        //   link.setAttribute('target', '_blank'); // Open link in new tab
+        // });
+        // }
+
+        switch (page) {
+          case "Student_home.html":
+            document.getElementById("home").innerHTML =
+              '<i class="fa-solid fa-house-chimney fa-xl"></i> <p>Home</p>';
+            document.getElementById("trc").innerHTML =
+              '<i class="fa-regular fa-list-check fa-xl"></i> <p>Attendance</p>';
+            document.getElementById("stl").innerHTML =
+              '<i class="fa-regular fa-house-person-leave fa-xl"></i> <p>Leave Req</p>';
+            document.getElementById("stt").innerHTML =
+              '<i class="fa-light fa-calendar-range fa-xl"></i> <p>T-table</p>';
+            break;
+
+          case "S_trackAttendance.html": ////track attendance
+            document.getElementById("home").innerHTML =
+              '<i class="fa-regular fa-house-chimney fa-xl"></i> <p>Home</p>';
+            document.getElementById("trc").innerHTML =
+              '<i class="fa-solid fa-list-check fa-xl"></i> <p>Attendance</p>';
+            document.getElementById("stl").innerHTML =
+              '<i class="fa-regular fa-house-person-leave fa-xl"></i> <p>Leave Req</p>';
+            document.getElementById("stt").innerHTML =
+              '<i class="fa-light fa-calendar-range fa-xl"></i> <p>T-table</p>';
+            break;
+
+          case "S_take_leave.html": /// tacke leave
+            document.getElementById("home").innerHTML =
+              '<i class="fa-regular fa-house-chimney fa-xl"></i> <p>Home</p>';
+            document.getElementById("trc").innerHTML =
+              '<i class="fa-regular fa-list-check fa-xl"></i> <p>Attendance</p>';
+            document.getElementById("stl").innerHTML =
+              '<i class="fa-solid fa-house-person-leave fa-xl"></i> <p>Leave Req</p>';
+            document.getElementById("stt").innerHTML =
+              '<i class="fa-light fa-calendar-range fa-xl"></i> <p>T-table</p>';
+            break;
+
+          case "S_time_table.html": /// time table
+            document.getElementById("home").innerHTML =
+              '<i class="fa-regular fa-house-chimney fa-xl"></i> <p>Home</p>';
+            document.getElementById("trc").innerHTML =
+              '<i class="fa-regular fa-list-check fa-xl"></i> <p>Attendance</p>';
+            document.getElementById("stl").innerHTML =
+              '<i class="fa-regular fa-house-person-leave fa-xl"></i> <p>Leave Req</p>';
+            document.getElementById("stt").innerHTML =
+              '<i class="fa-solid fa-calendar-range fa-xl"></i> <p>T-table</p>';
+        }
+      }
+    </script>
+  </body>
+</html>

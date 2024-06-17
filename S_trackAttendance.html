@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=Lemon&family=Markazi+Text&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <title>Track Attendance</title>
+    <script src="https://bernii.github.io/gauge.js/dist/gauge.min.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        font-family: Bree Serif, Helvetica, sans-serif;
+      }
+
+      #foo {
+        height: 77vw;
+        width: 90vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0%;
+        margin: 5%;
+      }
+      .circle {
+        /* border: 1px solid black; */
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: xx-large;
+
+        height: 49.5vw;
+        width: 49.5vw;
+        background: white;
+        box-shadow: inset 4px 4px 6px -1px rgba(0, 0, 0, 0.2),
+          inset -4px -4px 6px -1px rgba(255, 255, 255, 0.7),
+          -0.5px -0.5px 0px rgba(255, 255, 255, 1),
+          0.5px 0.5px 0px rgba(0, 0, 0, 0.15),
+          0px 12px 10px -10px rgba(0, 0, 0, 0.05);
+      }
+      .met,
+      .outercircle {
+        position: absolute;
+        /* top: 19vw; */
+        left: 0;
+        /* height: 40vw;
+        width: 10vw; */
+      }
+
+      .header {
+        text-align: center;
+        font-size: xx-large;
+        /* color:beige; */
+        color: rgb(120, 71, 8);
+        text-shadow: 2px 19px 13px rgba(245, 245, 220, 1);
+        /* margin-bottom: 3vh; */
+      }
+      .outercircle {
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        height: 80vw;
+        width: 100%;
+        margin-top: 0.9%;
+      }
+      .zero {
+        position: relative;
+        top: 100%;
+        left: 6%;
+        width: 0%;
+      }
+      .twenty-five {
+        position: relative;
+        top: 26%;
+        left: 8%;
+        height: 0%;
+        width: 0%;
+      }
+      .fifty {
+        position: relative;
+        left: 46.5%;
+        bottom: 4%;
+        height: 0%;
+        width: 0%;
+      }
+      .seventy-five {
+        position: relative;
+        top: 28%;
+        left: 88%;
+        height: 0%;
+        width: 0%;
+      }
+      .hundred {
+        position: relative;
+        top: 89%;
+        left: 91%;
+        height: 0%;
+        width: 0%;
+      }
+      .percent {
+        height: 73vw;
+        width: 99.5vw;
+        /* margin: 1%; */
+        /* font-size: x-large; */
+      }
+      .Subjects {
+        position: absolute;
+        /* top:; */
+        padding: 0% 0% 30% 0%;
+        width: 100%;
+      }
+      .subject {
+        /* border: solid 1px; */
+        background: #e3edf7;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        border-radius: 15px;
+        height: 160px;
+        width: 90%;
+        margin: 5%;
+        display: flex;
+        justify-content: space-between;
+        font-size: larger;
+      }
+      .lables {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        width: 40vw;
+        margin: 0 3vw 0 3vw;
+      }
+      .scoroout {
+        display: flex;
+        flex-direction: column;
+        /* align-items:center; */
+        justify-content: end;
+        margin: 0 3vw 0 3vw;
+      }
+      .score {
+        display: flex;
+        align-items: end;
+      }
+      .barcontainer {
+        background-color: #809bb0fe;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        position: relative;
+        transform: translateY(-50%);
+        top: 50%;
+        margin: 2px 8px;
+        width: 46px;
+        height: 120px;
+        display: flex;
+        align-items: end;
+        border-radius: 25px;
+        float: right;
+        overflow: hidden;
+      }
+      .practical,
+      .theory {
+        border-radius: 25px;
+        width: 100%;
+        height: 75%;
+        box-sizing: border-box;
+        animation: grow 1.5s ease-out forwards;
+        transform-origin: bottom;
+        overflow: hidden;
+      }
+      .practical {
+        background-color: antiquewhite;
+      }
+      .theory {
+        background-color: aquamarine;
+      }
+      @keyframes grow {
+        from {
+          transform: scaleY(0);
+        }
+      }
+      .scorelabes {
+        display: flex;
+        justify-content: space-around;
+      }
+      .persen {
+        position: absolute;
+        height: 120px;
+        width: 120px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        /* border: 1px solid; */
+      }
+      /* bas kar ho gaya */
+    </style>
+  </head>
+  <body>
+    <div class="header">Attendance Report</div>
+    <div class="meter">
+      <canvas id="foo" class="met"></canvas>
+    </div>
+    <div class="outercircle">
+      <div class="circle" id="percentage">75%</div>
+    </div>
+    <div class="percent">
+      <div class="zero">0</div>
+      <div class="twenty-five">25</div>
+      <div class="fifty">50</div>
+      <div class="seventy-five">75</div>
+      <div class="hundred">100</div>
+    </div>
+    <h3 style="text-align: center; margin-top: 4vh; background-color: white;">Overall Attendance</h3>
+
+    <div class="Subjects">
+      <div class="subject s1" onclick="checkattendance(this)">
+        <div class="lables">
+          <div class="sub-1">MAD (pr)</div>
+          <div class="lec-1-name">Mr Samarth Pandit</div>
+        </div>
+        <div class="scoroout">
+          <div class="score">
+            <div class="barcontainer">
+              <div class="practical" id="sp1"></div>
+            </div>
+
+            <div class="barcontainer">
+              <div class="theory" id="st1"></div>
+            </div>
+            <div class="persen">
+              <div id="p1"></div>
+              <div id="t1"></div>
+            </div>
+          </div>
+          <div class="scorelabes">
+            <p>PR</p>
+            <p>TH</p>
+          </div>
+        </div>
+      </div>
+   
+      <div class="subject s2" onclick="checkattendance(this)">
+        <div class="lables">
+          <div class="sub-1">PWP (th)</div>
+          <div class="lec-1-name">Mrs Namrata Thakur</div>
+        </div>
+        <div class="scoroout">
+          <div class="score">
+            <div class="barcontainer">
+              <div class="practical" id="sp2"></div>
+            </div>
+
+            <div class="barcontainer"><div class="theory" id="st2"></div></div>
+            <div class="persen">
+              <div id="p2"></div>
+              <div id="t2"></div>
+            </div>
+          </div>
+          <div class="scorelabes">
+            <p>PR</p>
+            <p>TH</p>
+          </div>
+        </div>
+      </div>
+      <div class="subject s3" onclick="checkattendance(this)">
+        <div class="lables">
+          <div class="sub-1">Subject-name</div>
+          <div class="lec-1-name">Lecturer-name</div>
+        </div>
+        <div class="scoroout">
+          <div class="score">
+            <div class="barcontainer">
+              <div class="practical" id="sp3"></div>
+            </div>
+
+            <div class="barcontainer"><div class="theory" id="st3"></div></div>
+            <div class="persen">
+              <div id="p3"></div>
+              <div id="t3"></div>
+            </div>
+          </div>
+          <div class="scorelabes">
+            <p>PR</p>
+            <p>TH</p>
+          </div>
+        </div>
+      </div>
+      <div class="subject s4" onclick="checkattendance(this)">
+        <div class="lables">
+          <div class="sub-1">Subject-name</div>
+          <div class="lec-1-name">Lecturer-name</div>
+        </div>
+        <div class="scoroout">
+          <div class="score">
+            <div class="barcontainer">
+              <div class="practical" id="sp4"></div>
+            </div>
+
+            <div class="barcontainer"><div class="theory" id="st4"></div></div>
+            <div class="persen">
+              <div id="p4"></div>
+              <div id="t4"></div>
+            </div>
+          </div>
+          <div class="scorelabes">
+            <p>PR</p>
+            <p>TH</p>
+          </div>
+        </div>
+      </div>
+      <div class="subject s5" onclick="checkattendance(this)">
+        <div class="lables">
+          <div class="sub-1">Subject-name</div>
+          <div class="lec-1-name">Lecturer-name</div>
+        </div>
+        <div class="scoroout">
+          <div class="score">
+            <div class="barcontainer">
+              <div class="practical" id="sp5"></div>
+            </div>
+
+            <div class="barcontainer"><div class="theory" id="st5"></div></div>
+            <div class="persen">
+              <div id="p5"></div>
+              <div id="t5"></div>
+            </div>
+          </div>
+          <div class="scorelabes">
+            <p>PR</p>
+            <p>TH</p>
+          </div>
+        </div>
+      </div>
+      <div class="subject s6" onclick="checkattendance(this)">
+        <div class="lables">
+          <div class="sub-1">Subject-name</div>
+          <div class="lec-1-name">Lecturer-name</div>
+        </div>
+        <div class="scoroout">
+          <div class="score">
+            <div class="barcontainer">
+              <div class="practical" id="sp6"></div>
+            </div>
+
+            <div class="barcontainer"><div class="theory" id="st6"></div></div>
+            <div class="persen">
+              <div id="p6"></div>
+              <div id="t6"></div>
+            </div>
+          </div>
+          <div class="scorelabes">
+            <p>PR</p>
+            <p>TH</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      let color = "aquamarine";
+      var opts = {
+        lines: 15,
+        angle: -0.15,
+        lineWidth: 0.13,
+        pointer: {
+          length: 0.4,
+          strokeWidth: 0.3,
+          color: "grey",
+        },
+        limitMax: false,
+        colorStart: "aquamarine",
+        colorStop: color,
+        strokeColor: "antiquewhite",
+        generateGradient: true,
+      };
+      var target = document.getElementById("foo");
+      var gauge = new Gauge(target).setOptions(opts);
+      gauge.maxValue = 100;
+      gauge.animationSpeed = 32;
+      valor = 75; //update score as your database
+      gauge.set(valor);
+
+      let number = document.getElementById("percentage");
+      let counter = 0;
+      setInterval(() => {
+        if (counter == valor) {
+          clearInterval();
+        } else {
+          counter += 1;
+          number.innerHTML = counter + "%";
+        }
+      }, 20);
+
+      // subject 1
+      // Practicle percentage
+      var sp1 = 65; // Update score as your datbase
+      var p1 = document.getElementById("p1");
+      let pr1 = 0;
+      setInterval(() => {
+        if (pr1 == sp1) {
+          clearInterval();
+        } else {
+          pr1 += 1;
+          p1.innerHTML = pr1 + "%";
+        }
+      }, 20);
+      document.getElementById("sp1").style.height = sp1 + "%";
+      // Theory percentage
+      var st1 = 75; //update score as your database
+      var t1 = document.getElementById("t1");
+      let th1 = 0;
+      setInterval(() => {
+        if (th1 == st1) {
+          clearInterval();
+        } else {
+          th1 += 1;
+          t1.innerHTML = th1 + "%";
+        }
+      }, 20);
+      document.getElementById("st1").style.height = st1 + "%";
+
+      // subject 2
+      // Practicle percentage
+      var sp2 = 60; // Update score as your datbase
+      var p2 = document.getElementById("p2");
+      let pr2 = 0;
+      setInterval(() => {
+        if (pr2 == sp2) {
+          clearInterval();
+        } else {
+          pr2 += 1;
+          p2.innerHTML = pr2 + "%";
+        }
+      }, 20);
+      document.getElementById("sp2").style.height = sp2 + "%";
+      // Theory percentage
+      var st2 = 70; //update score as your database
+      var t2 = document.getElementById("t2");
+      let th2 = 0;
+      setInterval(() => {
+        if (th2 == st2) {
+          clearInterval();
+        } else {
+          th2 += 1;
+          t2.innerHTML = th2 + "%";
+        }
+      }, 20);
+      document.getElementById("st2").style.height = st2 + "%";
+      // subject 3
+      // Practicle percentage
+      var sp3 = 65; // Update score as your datbase
+      var p3 = document.getElementById("p3");
+      let pr3 = 0;
+      setInterval(() => {
+        if (pr3 == sp3) {
+          clearInterval();
+        } else {
+          pr3 += 1;
+          p3.innerHTML = pr3 + "%";
+        }
+      }, 20);
+      document.getElementById("sp3").style.height = sp3 + "%";
+      // Theory percentage
+      var st3 = 75; //update score as your database
+      var t3 = document.getElementById("t3");
+      let th3 = 0;
+      setInterval(() => {
+        if (th3 == st3) {
+          clearInterval();
+        } else {
+          th3 += 1;
+          t3.innerHTML = th3 + "%";
+        }
+      }, 20);
+      document.getElementById("st3").style.height = st3 + "%";
+      // subject 4
+      // Practicle percentage
+      var sp4 = 65; // Update score as your datbase
+      var p4 = document.getElementById("p4");
+      let pr4 = 0;
+      setInterval(() => {
+        if (pr4 == sp4) {
+          clearInterval();
+        } else {
+          pr4 += 1;
+          p4.innerHTML = pr4 + "%";
+        }
+      }, 20);
+      document.getElementById("sp4").style.height = sp4 + "%";
+      // Theory percentage
+      var st4 = 75; //update score as your database
+      var t4 = document.getElementById("t4");
+      let th4 = 0;
+      setInterval(() => {
+        if (th4 == st4) {
+          clearInterval();
+        } else {
+          th4 += 1;
+          t4.innerHTML = th4 + "%";
+        }
+      }, 20);
+      document.getElementById("st4").style.height = st4 + "%";
+      // subject 5
+      // Practicle percentage
+      var sp5 = 65; // Update score as your datbase
+      var p5 = document.getElementById("p5");
+      let pr5 = 0;
+      setInterval(() => {
+        if (pr5 == sp5) {
+          clearInterval();
+        } else {
+          pr5 += 1;
+          p5.innerHTML = pr5 + "%";
+        }
+      }, 20);
+      document.getElementById("sp5").style.height = sp5 + "%";
+      // Theory percentage
+      var st5 = 75; //update score as your database
+      var t5 = document.getElementById("t5");
+      let th5 = 0;
+      setInterval(() => {
+        if (th5 == st5) {
+          clearInterval();
+        } else {
+          th5 += 1;
+          t5.innerHTML = th5 + "%";
+        }
+      }, 20);
+      document.getElementById("st5").style.height = st5 + "%";
+      // subject 6
+      // Practicle percentage
+      var sp6 = 70; // Update score as your datbase
+      var p6 = document.getElementById("p6");
+      let pr6 = 0;
+      setInterval(() => {
+        if (pr6 == sp6) {
+          clearInterval();
+        } else {
+          pr6 += 1;
+          p6.innerHTML = pr6 + "%";
+        }
+      }, 20);
+      document.getElementById("sp6").style.height = sp6 + "%";
+      // Theory percentage
+      var st6 = 78; //update score as your database
+      var t6 = document.getElementById("t6");
+      let th6 = 0;
+      setInterval(() => {
+        if (th6 == st6) {
+          clearInterval();
+        } else {
+          th6 += 1;
+          t6.innerHTML = th6 + "%";
+        }
+      }, 20);
+      document.getElementById("st6").style.height = st6 + "%";
+
+      function checkattendance(div) {
+        var data = div.querySelector(".lables").innerHTML;
+        sessionStorage.setItem("lecturedetail", data);
+        window.top.location.href = "Checkattendance.html";
+      }
+    </script>
+  </body>
+</html>

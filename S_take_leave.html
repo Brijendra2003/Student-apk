@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=Lemon&family=Markazi+Text&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="dropdown.css" />
+    <title>Take leave</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: Bree Serif, Helvetica, sans-serif;
+      }
+      .header {
+        text-align: center;
+        font-size: xx-large;
+        color: rgb(120, 71, 8);
+        text-shadow: 2px 19px 13px rgba(245, 245, 220, 1);
+        margin-bottom: 10px;
+      }
+      .container {
+        display: flex;
+        justify-content: center;
+        width: 95%;
+        margin: 2.25%;
+        box-sizing: border-box;
+        /* border: solid 1px; */
+        overflow-y: auto;
+      }
+      .inner-container {
+        overflow-y: auto;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        width: 100%;
+        /* padding: 2%; */
+      }
+      @media all and (max-height: 700px) and (min-height: 600px) {
+        .take-leave {
+          bottom: 15%;
+        }
+        .container {
+          height: 456px;
+        }
+      }
+      @media all and (max-height: 750px) and (min-height: 700px) {
+        .take-leave {
+          bottom: 13%;
+        }
+        .container {
+          height: 535px;
+        }
+      }
+      @media all and (max-height: 800px) and (min-height: 750px) {
+        .take-leave {
+          bottom: 13%;
+        }
+        .container {
+          height: 569px;
+        }
+      }
+      @media all and (max-height: 850px) and (min-height: 800px) {
+        .take-leave {
+          bottom: 12%;
+        }
+        .container {
+          height: 620px;
+        }
+      }
+      @media all and (max-height: 900px) and (min-height: 850px) {
+        .take-leave {
+          bottom: 12%;
+        }
+        .container {
+          height: 660px;
+        }
+      }
+      @media all and (max-height: 950px) and (min-height: 900px) {
+        .take-leave {
+          bottom: 11%;
+        }
+        .container {
+          height: 690px;
+        }
+      }
+      .take-leave {
+        border: 1px solid black;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 7%;
+        width: 90%;
+        font-size: x-large;
+        position: absolute;
+        text-decoration: none;
+        color: rgb(120, 71, 8);
+        background-color: aquamarine;
+      }
+      .aproovel {
+        display: grid;
+        grid-template-columns: 90vw;
+        grid-gap: 0.8vh;
+        margin-bottom: 0.8vh;
+      }
+      .box {
+        padding: 10px;
+        /* display: flex;
+        flex-direction: column; */
+        /* justify-content: center; */
+        /* align-items: center; */
+        /* width: 100%; */
+        text-align: center;
+        border: 1px solid;
+        border-radius: 5px;
+        display: grid;
+        grid-gap: 1vw;
+        grid-template-columns: 30vw 25vw 25vw;
+        grid-template-rows: 5vh 5vh;
+      }
+      .inbox {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .inb1 {
+        border: 1px solid;
+        border-radius: 5px;
+        background-color: aquamarine;
+      }
+      /* #e3edf7 */
+      .inb2 {
+        border: 1px solid;
+        border-radius: 5px;
+        background-color: aquamarine;
+      }
+      .inb4 {
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 2;
+        grid-row-end: 3;
+        border: 1px solid;
+        border-radius: 5px;
+        background-color: antiquewhite;
+      }
+
+      .inb3 {
+        grid-row-start: 1;
+        grid-row-end: 3;
+        /* text-align: center; */
+        padding: 2vw;
+      }
+      .img {
+        height: 9vh;
+        width: 9vh;
+        /* border: 1px solid; */
+        /* border-radius: 50%; */
+        /* box-shadow: rgb(152, 151, 151) 0px 0px 94px 4px; */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">Take Leave</div>
+    <div class="container">
+      <div class="inner-container">
+        <!-- <button class="take-leave" onclick="window.top.location.href='Select_lecs.html'">Apply for a leave</button> -->
+        <a class="take-leave" href="Select_lecs.html" target="_top"
+          >Apply for a leave</a
+        >
+        <div class="aproovel" id="displayData">
+        </div>
+      </div>
+    </div>
+    <script>
+      const now = new Date();
+
+      const time =
+        now.getHours() +
+        ":" +
+        (now.getMinutes() < 10 ? "0" : "") +
+        now.getMinutes() +
+        ":" +
+        (now.getSeconds() < 10 ? "0" : "") +
+        now.getSeconds();
+
+      const formattedTime =
+        now.getDate() + ":" + now.getMonth() + ":" + now.getFullYear();
+
+      const selectedItemsData = JSON.parse(
+        sessionStorage.getItem("selectedItemsData")
+      );
+      if (selectedItemsData && selectedItemsData.length > 0) {
+        const newData = `<div class="box">
+      <div class="inbox inb1">${formattedTime}</div>
+      <div class="inbox inb2">${time}</div>
+      <div class="inbox inb3">
+        <img src="correct-icon.jpg" class="img" alt="" />
+      </div>
+      <div class="inbox inb4">${selectedItemsData[0].content}</div>
+    </div>`;
+
+        // Append the new content to the existing content
+        document.getElementById("displayData").innerHTML += newData;
+      } else {
+        document.getElementById(
+          "displayData"
+        ).innerHTML = `<div">You didn't select the lectures</div>`;
+      }
+    </script>
+  </body>
+</html>
+
+<!-- <div class="box">
+  <label for="">${Date()}</label>
+<label for="">${selectedItemsData[0].content} </label></div> -->

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=Lemon&family=Markazi+Text&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <title>Student time table</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: Bree Serif, Helvetica, sans-serif;
+      }
+      .header {
+        text-align: center;
+        font-size: 4vh;
+        color: rgb(120, 71, 8);
+        text-shadow: 2px 19px 13px rgba(245, 245, 220, 1);
+        margin-bottom: 2vh;
+      }
+      .parent-container {
+        display: flex;
+      }
+      .day-time-cotainer {
+        display: grid;
+        grid-template-columns: 33vw;
+        grid-gap: 0.5vh;
+        margin: 0% 1% 5% 2%;
+        grid-template-rows: repeat(7, 11.1vh);
+      }
+      .container {
+        margin: 0% 2% 5% 0%;
+        display: grid;
+        grid-template-columns: repeat(6, 33vw);
+        grid-template-rows: repeat(7, 11.1vh);
+        grid-gap: 0.5vh;
+        overflow-x: auto;
+      }
+      .box {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border: solid 1px;
+        border-radius: 3px;
+        font-size: 2vh;
+        text-align: center;
+        background-color: #e3edf7;
+      }
+      #dt {
+        background: linear-gradient(
+          to top right,
+          antiquewhite calc(50% - 1px),
+          black,
+          aquamarine calc(50% + 1px)
+        );
+      }
+      .day {
+        position: relative;
+        left: 8vw;
+      }
+      .time {
+        position: relative;
+        top: 1vh;
+        right: 7vw;
+      }
+      .days {
+        background-color: aquamarine;
+      }
+      .times {
+        background-color: antiquewhite;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">Time Table</div>
+    <div class="parent-container">
+      <div class="day-time-cotainer">
+        <div class="box" id="dt">
+          <div class="day">Day</div>
+          <div class="time">Time</div>
+        </div>
+        <div class="box times" id="lec1-time">
+          8:00 am <br />
+          to <br />
+          9:00 am
+        </div>
+        <div class="box times" id="lec2-time">
+          9:00 am <br />
+          to <br />
+          10:00 am
+        </div>
+        <div class="box times" id="lec3-time">
+          10:15 am <br />
+          to <br />
+          11:15 am
+        </div>
+        <div class="box times" id="lec4-time">
+          11:15 am <br />
+          to <br />
+          12:15 pm
+        </div>
+        <div class="box times" id="lec5-time">
+          12:45 pm <br />
+          to <br />
+          1:45 pm
+        </div>
+        <div class="box times" id="lec6-time">
+          1:45 pm <br />
+          to <br />
+          2:45 pm
+        </div>
+      </div>
+      <div class="container">
+        <div class="box days">Monday</div>
+        <div class="box days">Tuesday</div>
+        <div class="box days">Wednesday</div>
+        <div class="box days">Thursday</div>
+        <div class="box days">Friday</div>
+        <div class="box days">Saturday</div>
+
+        <div class="box" id="">
+          ETI <br />
+          MR Samarth Pandit
+        </div>
+        <div class="box" id="">No-lecture</div>
+        <div class="box" id="">MNG <br />MR Ingle sir</div>
+        <div class="box" id="">
+          PWP (pr) <br />
+          MS Namrata Thakur
+        </div>
+        <div class="box" id="">
+          MAD (pr) <br />
+          MR Samarth Pandit
+        </div>
+        <div class="box" id="">
+          NIS <br />
+          MRS Harshala Date
+        </div>
+
+        <div class="box" id="">
+          MAD (th) <br />
+          MR Samarth Pandit
+        </div>
+        <div class="box" id="">
+          MAD (th) <br />
+          MR Samarth Pandit
+        </div>
+        <div class="box" id="">
+          MAD (th) <br />
+          MR Samarth Pandit
+        </div>
+        <div class="box" id="">
+          PWP (pr) <br />
+          MS Namrata Thakur
+        </div>
+        <div class="box" id="">
+          MAD (pr) <br />
+          MR Samarth Pandit
+        </div>
+        <div class="box" id="">
+          MNG <br />
+          MR Ingle sir
+        </div>
+
+        <div class="box" id="">
+          NIS (pr) <br />
+          MRS Harshala Date
+        </div>
+        <div class="box" id="">
+          MAD (pr) <br />
+          MR Samarth Pandit
+        </div>
+        <div class="box" id="">
+          ETI <br />
+          MR Samarth Pandit
+        </div>
+        <div class="box" id="">
+          NIS <br />
+          MRS Harshala Date
+        </div>
+        <div class="box" id="">
+          PWP (th) <br />
+          MS Namrata Thakur
+        </div>
+        <div class="box" id="">
+          ETI <br />
+          MR Samarth Pandit
+        </div>
+
+        <div class="box" id="">
+          NIS (pr) <br />
+          MRS Harshala Date
+        </div>
+        <div class="box" id="">
+          MAD (pr) <br />
+          MR Samarth Pandit
+        </div>
+        <div class="box" id="">
+          MNG <br />
+          MR Ingle sir
+        </div>
+        <div class="box" id="">
+          PWP (th) <br />
+          MS Namrata Thakur
+        </div>
+        <div class="box" id="">
+          NIS <br />
+          MRS Harshala Date
+        </div>
+        <div class="box" id="">
+          PWP (th) <br />
+          MS Namrata Thakur
+        </div>
+
+        <div class="box" id="">No-lecture</div>
+        <div class="box" id="">
+          CPE <br />
+          Mr Samiran Maity
+        </div>
+        <div class="box" id="">
+          CPE <br />
+          Mr Samiran Maity
+        </div>
+        <div class="box" id="">No-lecture</div>
+        <div class="box" id="">
+          EDP <br />
+          MS Minakshi Dixit
+        </div>
+        <div class="box" id="">No-lecture</div>
+
+        <div class="box" id="">No-lecture</div>
+        <div class="box" id="">
+          CPE <br />
+          Mr Samiran Maity
+        </div>
+        <div class="box" id="">
+          CPE <br />
+          Mr Samiran Maity
+        </div>
+        <div class="box" id="">No-lecture</div>
+        <div class="box" id="">
+          EDP <br />
+          MS Minakshi Dixit
+        </div>
+        <div class="box" id="">No-lecture</div>
+      </div>
+    </div>
+  </body>
+</html>
+<!-- <div class="mon-lec1-sub">PWP (Practical)
+    </div>
+    <div class="mon-lec1-lecturer">Miss Namrata Thakur</div> -->

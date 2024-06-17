@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=Lemon&family=Markazi+Text&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="mark_attendance.css" />
+    <title>Mark Attendance</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: Bree Serif, Helvetica, sans-serif;
+      }
+      .header {
+        text-align: center;
+        font-size: 4vh;
+        color: rgb(120, 71, 8);
+        text-shadow: 2px 19px 13px rgba(245, 245, 220, 1);
+        margin-bottom: 2vh;
+      }
+      .note {
+        /* border: solid 1px; */
+        width: 90%;
+        height: 10vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 5%;
+      }
+      .container2 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      .box {
+        border: 1px solid;
+        border-radius: 5px;
+        margin: 1%;
+        width: 95%;
+        height: 15vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: rgb(160, 158, 158) 0px 0px 10px 0px;
+      }
+      .img {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 25vw;
+        height: 25vw;
+        /* padding: 2%; */
+        border-radius: 50%;
+        box-shadow: rgb(160, 158, 158) 0px 0px 30px 0px;
+      }
+      .img2 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 20vw;
+        height: 20vw;
+        /* padding: 2%; */
+        border: none;
+      }
+      .lec-details {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 59vw;
+        height: 12vh;
+        padding: 2%;
+        border-radius: 5px;
+        background-color: aquamarine;
+        box-shadow: rgb(160, 158, 158) 0px 0px 20px 0px;
+      }
+      .scr { 
+        height: 31vh; 
+        border: none;
+        box-shadow: none;
+      }
+    
+    </style>
+  </head>
+  <body>
+    <div class="header">Mark your Attendance</div>
+    <div class="container2">
+      <div class="note" style="color: rgb(100, 100, 100)">
+        Note: Your attendance status will be marked as absent by the respected
+        lecturer if you misbehave in class!
+      </div>
+      <div class="box lec-d">
+        <div class="img"><img class="img" src="ganesha.jpg" alt="" /></div>
+        <div class="lec-details" id="lec-details" style="margin-left: 2vw">
+          MAD
+        </div>
+      </div>
+      <div class="box" onclick="checkWiFi()">
+        <div
+          class="label lec-details"
+          style="font-size: larger; margin-right: 8vw"
+        >
+          Enable your Wi-Fi to mark attendance
+        </div>
+        <div class="enable-status">
+          <img id="wifiIcon" src="wrong-icon.png" class="img2" alt="" />
+        </div>
+      </div>
+
+      <div class="box att-marked">
+        <div
+          class="lable lec-details"
+          style="font-size: larger; margin-right: 8vw"
+        >
+          Your attendance marked as present
+        </div>
+        <div class="enable-status">
+          <img src="correct-icon.jpg" alt="" class="img2" />
+        </div>
+      </div>
+      <div class="box scr">
+        <div class="container2">
+          <div class="box2">
+            <div class="content">
+              <div class="percent" style="--num: 0" data-text="Score">
+                <div class="dot"></div>
+                <svg>
+                  <circle cx="70" cy="70" r="70"></circle>
+                  <circle cx="70" cy="70" r="70"></circle>
+                </svg>
+              </div>
+              <div class="number" id="number">
+                <h2>0<span>%</span></h2>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Retrieve the stored content from sessionStorage
+      var content = sessionStorage.getItem("clickedButtonContent");
+
+      // Display the content in the specified element
+      document.getElementById("lec-details").innerHTML = content;
+      // Select the element with the class 'percent'
+
+      var score = 95;
+      document.getElementById(
+        "number"
+      ).innerHTML = `<h2>&nbsp&nbsp${score}<span>%</span></h2>`;
+
+      var element = document.querySelector(".percent");
+
+      // Change the value of the '--num' custom property
+      element.style.setProperty("--num", score);
+
+      // wi-fi js
+      // Function to check if Wi-Fi is enabled
+      function checkWiFi() {
+        // Assume Wi-Fi is enabled after the user confirms
+        var wifiEnabled = confirm("Have you enabled Wi-Fi on your device?");
+
+        // Get the reference to the Wi-Fi icon element
+        var wifiIcon = document.getElementById("wifiIcon");
+
+        // Update the image source based on Wi-Fi status
+        if (wifiEnabled) {
+          wifiIcon.src = "correct-icon.jpg";
+        } else {
+          wifiIcon.src = "wrong-icon.png";
+        }
+      }
+    </script>
+  </body>
+</html>
